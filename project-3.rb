@@ -5,14 +5,15 @@ def substrings(user_string, dictionary)
 	dict_hash = Hash[dictionary.map { |x| [x,0]  }]
 	i = 0
 	while i < word_arr.length
-		dict_hash.each {|key,value| 
-			if Regexp.new(key) =~ word_arr[i]
-				value += 1
+		dict_hash.keys.each do |key| 
+			if Regexp.new(key) =~ word_arr[i].downcase
+				dict_hash[key] += 1
 			end
-		}	
+		end
 		i+=1		
 	end
 	puts dict_hash
 end
 
 substrings("below",dictionary)
+substrings("Howdy partner, sit down! How's it going?", dictionary)
